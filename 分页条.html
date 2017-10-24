@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
+    <title>分页条</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app">
+    <ul class="pagination">
+        <li v-for="n in pageCount">
+            <a href="javascript:void(0)" v-bind:class="activeNumber === n+1 ? 'active' : ''">{{n+1}} </a></li>
+    </ul>
+</div>
+<script>
+var vm = new Vue({
+    el: "#app",
+    data: {
+        activeNumber: 1,
+        pageCount: 10
+    }
+})
+</script>
+</body>
+</html>
