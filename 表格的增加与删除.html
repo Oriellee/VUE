@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>表格的增加与删除</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+    	#app{
+    		width: 500px;
+    		margin: 3rem auto;
+    	}
+    	.form-group{
+    		padding:1rem; 
+    	}
+    	.form-group>label{
+    		display: inline-block;
+    		width: 5rem;
+    		height: 1.5rem;
+    		text-align: right;
+    	}
+    	.textCenter{
+    		margin-left: 5rem;
+    	}
+    	table{
+			width: 100%;
+			padding: 0.3rem;
+			text-align: center;
+			margin-top: 2rem;
+			border-collapse: collapse;
+    	}
+    	th{
+    		background-color: #42b983;
+    		color: #fff;
+    	}
+    	th,td{
+    		border: 1px solid grey;
+    		padding: 0.3rem 0;
+    	}
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <fieldset>
+            <legend>
+                Create New Person
+            </legend>
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" v-model="newPerson.name" />
+            </div>
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="text" v-model="newPerson.age" />
+            </div>
+            <div class="form-group">
+                <label>Sex:</label>
+                <select v-model=newPerson.sex>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+            </div>
+            <button @click="createPerson" class="textCenter">Create</button>
+        </fieldset>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="person in people">
+                    <td>{{person.name}}</td>
+                    <td>{{person.age}}</td>
+                    <td>{{person.sex}}</td>
+                    <td style="text-align: center;">
+                        <button @click="deletePerson(this.index)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            newPerson: {
+                name: "",
+                age: 0,
+                sex: '男'
+            },
+            people: [{
+                    name: "A",
+                    age: 24,
+                    sex: "男"
+                },
+                {
+                    name: "B",
+                    age: 34,
+                    sex: "女"
+                },
+                {
+                    name: "C",
+                    age: 44,
+                    sex: "男"
+                }
+            ]
+        },
+        methods:{
+        	createPerson:function(){
+        		this.people.push(this.newPerson);
+        		this.newPerson = {name:"",age:0,sex:"男"};
+        	},
+        	deletePerson:function(index){
+        		this.people.splice(index,1);
+        	}
+        }
+    })
+    </script>
+</body>
+
+</html>

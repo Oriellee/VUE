@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>弹出窗口</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model="message">
+		<button @click="greet">greet</button>
+		<button @click="say('Hi')">Hi</button>
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				message:"hahahahhaha"
+			},
+			methods:{
+				greet:function(){
+					alert(this.message);
+				},
+				say: function(msg) {
+                    alert(msg)
+                }
+			}
+		})
+	</script>
+</body>
+</html>
