@@ -22,8 +22,7 @@ let router = new Router({
       path: '/login',
       name: '登录',
       component: Login
-    },
-    {
+    },    {
       path: '/',
       name: 'home',
       component: Home,
