@@ -38,15 +38,15 @@ const router = new VueRouter({
     ]
 })
 router.beforeEach((to, from, next) => {
-    console.log("1---------",JSON.parse(window.localStorage.getItem('access-user')))
+    // console.log("1---------",JSON.parse(window.localStorage.getItem('access-user')))
     if (to.path.startsWith('/login')) {
-        console.log("1---------",JSON.parse(window.localStorage.getItem('access-user')))
+        // console.log("1---------",JSON.parse(window.localStorage.getItem('access-user')))
         window.localStorage.removeItem('access-user')
-        console.log("2---------",JSON.parse(window.localStorage.getItem('access-user')))
+        // console.log("2---------",JSON.parse(window.localStorage.getItem('access-user')))
         next()
     } else {
         let user = JSON.parse(window.localStorage.getItem('access-user'))
-        console.log("3---------",JSON.parse(window.localStorage.getItem('access-user')))
+        // console.log("3---------",JSON.parse(window.localStorage.getItem('access-user')))
         if (!user) {
             next({path: '/login'})
         } else {

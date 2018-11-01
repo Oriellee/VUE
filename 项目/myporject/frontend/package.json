@@ -8,11 +8,19 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "acorn-jsx": "^5.0.0",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.0.4",
+    "dependencies": "0.0.1",
     "element-ui": "^2.4.5",
+    "eslint": "^5.8.0",
+    "index": "^0.4.0",
     "node-sass": "^4.9.4",
+    "peer": "^0.2.10",
     "sass": "^1.14.3",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.17",
+    "vue-axios": "^2.1.4",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
@@ -22,10 +30,6 @@
     "@vue/cli-service": "^3.0.5",
     "axios": "^0.18.0",
     "babel-plugin-component": "^1.1.1",
-    "eslint": "^5.8.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-vue": "^4.7.1",
     "vue-cli-plugin-axios": "0.0.4",
     "vue-cli-plugin-element": "^1.0.0",
     "vue-template-compiler": "^2.5.17"
