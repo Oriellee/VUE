@@ -10,13 +10,14 @@
         </el-form-item>
         <!--<el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>-->
         <el-form-item style="width:100%;">
-            <el-button type="primary" style="width:100%;" @click.native.prevent="handleLogin" :loading="loading">登录</el-button>
+            <el-button type="primary" style="width:100%;" @click.native.prevent="handleLogin" :loading="loading">登录
+            </el-button>
         </el-form-item>
     </el-form>
 </template>
 
 <script>
-    // import API from '../api/api_user';
+    import API from '../axios/index'
 
     export default {
         data() {
@@ -44,28 +45,32 @@
                 let that = this;
                 this.$refs.AccountFrom.validate((valid) => {
                     if (valid) {
-                        // this.loading = true;
-                        // let loginParams = {username: this.account.username, pwd: this.account.pwd};
-                        // API.login(loginParams).then(function (result) {
-                        //     that.loading = false;
-                        //     if (result && result.id) {
-                                localStorage.setItem('access-user', JSON.stringify('123456'));
-                                // console.log(localStorage)
-//                that.$store.commit('SET_ROUTERS', user.permissions)
-//                that.$router.addRoutes(that.$store.getters.addRouters);
-//                that.$router.options.routes = that.$store.getters.routers;
+                        this.loading = true;
+                        let loginParams = {username: this.account.username, pwd: this.account.pwd};
+                        API.post('/api/menus',loginParams).then(function (result) {
+                            that.loading = false;
+                            if (result && result.id) {
+                                localStorage.setItem('access-user', JSON.stringify(result.thoken_key));
+                                console.log(localStorage)
+                                that.$store.commit('SET_ROUTERS', user.permissions)
+                                that.$router.addRoutes(that.$store.getters.addRouters);
+                                that.$router.options.routes = that.$store.getters.routers;
                                 that.$router.push({path: '/'});
-                        //     } else {
-                        //         that.$message.error({showClose: true, message: result.errmsg || '登录失败', duration: 2000});
-                        //     }
-                        // }, function (err) {
-                        //     that.loading = false;
-                        //     that.$message.error({showClose: true, message: err.toString(), duration: 2000});
-                        // }).catch(function (error) {
-                        //     that.loading = false;
-                        //     console.log(error);
-                        //     that.$message.error({showClose: true, message: '请求出现异常', duration: 2000});
-                        // });
+                            } else {
+                                that.$message.error({
+                                    showClose: true,
+                                    message: result.errmsg || '登录失败',
+                                    duration: 2000
+                                });
+                            }
+                        }, function (err) {
+                            that.loading = false;
+                            that.$message.error({showClose: true, message: err.toString(), duration: 2000});
+                        }).catch(function (error) {
+                            that.loading = false;
+                            console.log(error);
+                            that.$message.error({showClose: true, message: '请求出现异常', duration: 2000});
+                        });
                     }
                 });
             }
@@ -95,7 +100,7 @@
         background: -moz-linear-gradient(top, #ace, #00C1DE); /*火狐*/
         background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ace), to(#00C1DE)); /*谷歌*/
         background: -webkit-linear-gradient(top, #ace, #00C1DE); /*Safari5.1 Chrome 10+*/
-        background: -o-linear-gradient(top,#ace, #00C1DE); /*Opera 11.10+*/
+        background: -o-linear-gradient(top, #ace, #00C1DE); /*Opera 11.10+*/
 
         .title {
             margin: 0px auto 40px auto;
