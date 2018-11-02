@@ -4,7 +4,7 @@ import {Message, MessageBox} from 'element-ui'
 let cancel, promiseArr = {}
 const CancelToken = axios.CancelToken;
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000'
+axios.defaults.baseURL = 'http://127.0.0.1:8000/'
 //设置默认请求头
 axios.defaults.headers = {
     'X-Requested-With': 'XMLHttpRequest'

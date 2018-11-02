@@ -18,3 +18,11 @@ def json_response(obj=None, status=status.HTTP_200_OK):
     if obj != None:
         str_output = json.dumps(obj, ensure_ascii=False)
     return HttpResponse(str_output, status)
+
+
+def login(request):
+    a = {
+        'id': '1',
+        'thoken_key': 'abcde'
+    }
+    return json_response(a)

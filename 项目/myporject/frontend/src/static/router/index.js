@@ -4,12 +4,12 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 
-import User from '@/components/foo'
-import Hello from '@/components/HelloWorld'
-import AAA from '@/components/aaa'
+import User from '@/static/components/foo'
+import Hello from '@/static/components/HelloWorld'
+import AAA from '@/static/components/aaa'
 
 // 懒加载方式，当路由被访问的时候才加载对应组件
-const Login = resolve => require(['@/components/login'], resolve)
+const Login = resolve => require(['@/static/components/login'], resolve)
 window.localStorage.removeItem('access-user')
 
 const router = new VueRouter({

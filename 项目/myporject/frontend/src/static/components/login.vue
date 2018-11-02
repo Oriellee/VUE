@@ -47,14 +47,15 @@
                     if (valid) {
                         this.loading = true;
                         let loginParams = {username: this.account.username, pwd: this.account.pwd};
-                        API.post('/api/menus',loginParams).then(function (result) {
+                        API.post('/api/login',loginParams).then(function (result) {
                             that.loading = false;
-                            if (result && result.id) {
-                                localStorage.setItem('access-user', JSON.stringify(result.thoken_key));
+                            console.log(result)
+                            if (result.data && result.data.id) {
+                                localStorage.setItem('access-user', JSON.stringify(result.data.thoken_key));
                                 console.log(localStorage)
-                                that.$store.commit('SET_ROUTERS', user.permissions)
-                                that.$router.addRoutes(that.$store.getters.addRouters);
-                                that.$router.options.routes = that.$store.getters.routers;
+                                // that.$store.commit('SET_ROUTERS', user.permissions)
+                                // that.$router.addRoutes(that.$store.getters.addRouters);
+                                // that.$router.options.routes = that.$store.getters.routers;
                                 that.$router.push({path: '/'});
                             } else {
                                 that.$message.error({
