@@ -51,11 +51,11 @@
                             that.loading = false;
                             console.log(result)
                             if (result.data && result.data.id) {
-                                localStorage.setItem('access-user', JSON.stringify(result.data.thoken_key));
+                                localStorage.setItem('sc-token', JSON.stringify(result.data.thoken_key));
                                 console.log(localStorage)
-                                // that.$store.commit('SET_ROUTERS', user.permissions)
-                                // that.$router.addRoutes(that.$store.getters.addRouters);
-                                // that.$router.options.routes = that.$store.getters.routers;
+                                that.$store.commit('SET_ROUTERS',result.data.thoken_key)
+                                that.$router.addRoutes(that.$store.getters.addRouters);
+                                that.$router.options.routes = that.$store.getters.routers;
                                 that.$router.push({path: '/'});
                             } else {
                                 that.$message.error({
