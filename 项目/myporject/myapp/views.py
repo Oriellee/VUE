@@ -23,6 +23,6 @@ def json_response(obj=None, status=status.HTTP_200_OK):
 def login(request):
     a = {
         'id': '1',
-        'thoken_key': 'abcde'
+        'sc_token': 'abcde'
     }
     return json_response(a)

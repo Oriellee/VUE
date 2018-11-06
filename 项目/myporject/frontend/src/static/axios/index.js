@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {Message, MessageBox} from 'element-ui'
+import store from '../store/index'
 
 let cancel, promiseArr = {}
 const CancelToken = axios.CancelToken;
@@ -8,34 +9,38 @@ axios.defaults.baseURL = 'http://127.0.0.1:8000/'
 //设置默认请求头
 axios.defaults.headers = {
     'X-Requested-With': 'XMLHttpRequest',
-    'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+    // 'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
 }
-axios.defaults.timeout = 5000
+axios.defaults.headers['Authentication-Token'] = store.state.sc_token;
+axios.defaults.timeout = 5000;
 //请求拦截器
 axios.interceptors.request.use(config => {
 
-     // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
+    // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
     //发起请求时，取消掉当前正在进行的相同请求
     if (promiseArr[config.url]) {
         promiseArr[config.url]('操作取消')
         promiseArr[config.url] = cancel
 
-        if (store.state.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
-            config.headers.Authorization = `token ${store.state.token}`;
-        }
-
-        let sc_token = window.localStorage.getItem('sc-token');
-        console.log(sc_token)
-        if(sc_token){
-            console.log(sc_token)
-            config.headers['sc-token'] =sc_token
-            console.log(config)
-        }else{
-            error.message = '登陆信息获取失败'
-            Message.error(error)
-        }
+        // if (store.state.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+        //     config.headers.Authorization = `token ${store.state.token}`;
+        // }
+        //
+        // let sc_token = window.localStorage.getItem('sc-token');
+        // console.log(sc_token)
+        // if(sc_token){
+        //     console.log(sc_token)
+        //     config.headers['sc-token'] =sc_token
+        //     console.log(config)
+        // }else{
+        //     error.message = '登陆信息获取失败'
+        //     Message.error(error)
+        // }
     } else {
         promiseArr[config.url] = cancel
+    }
+    if (store.state.sc_token) {
+        config.headers['Authentication-Token'] = store.state.token
     }
     console.log("发送成功")
     return config
@@ -57,6 +62,11 @@ axios.interceptors.response.use(response => {
                 break;
             case 401:
                 error.message = '未授权，请重新登录'
+                // this.$store.commit('del_token');
+                // router.replace({
+                //     path: '/login',
+                //     query: {redirect: router.currentRoute.fullPath}//登录成功后跳入浏览的当前页面
+                // })
                 break;
             case 403:
                 error.message = '拒绝访问'

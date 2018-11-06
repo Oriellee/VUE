@@ -18,6 +18,7 @@
 
 <script>
     import API from '../axios/index'
+    import store from '@/static/store/index';
 
     export default {
         data() {
@@ -51,12 +52,15 @@
                             that.loading = false;
                             console.log(result)
                             if (result.data && result.data.id) {
-                                localStorage.setItem('sc-token', JSON.stringify(result.data.thoken_key));
-                                console.log(localStorage)
-                                that.$store.commit('SET_ROUTERS',result.data.thoken_key)
-                                that.$router.addRoutes(that.$store.getters.addRouters);
-                                that.$router.options.routes = that.$store.getters.routers;
-                                that.$router.push({path: '/'});
+                                console.log("aaa")
+                                store.commit('set_token', result.data['sc_token']);
+                                console.log()
+                                if (store.state.sc_token) {
+                                    that.$router.push('/')
+                                    console.log(store.state.sc_token)
+                                } else {
+                                    that.$router.replace('/login');
+                                }
                             } else {
                                 that.$message.error({
                                     showClose: true,
