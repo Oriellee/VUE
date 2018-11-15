@@ -19,6 +19,7 @@
 <script>
     import API from '../axios/index'
     import store from '@/static/store/index';
+    import axios from 'axios'
 
     export default {
         data() {
@@ -48,6 +49,7 @@
                     if (valid) {
                         this.loading = true;
                         let loginParams = {username: this.account.username, pwd: this.account.pwd};
+
                         API.post('/api/login',loginParams).then(function (result) {
                             that.loading = false;
                             console.log(result)

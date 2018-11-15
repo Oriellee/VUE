@@ -5,14 +5,15 @@ import store from '../store/index'
 let cancel, promiseArr = {}
 const CancelToken = axios.CancelToken;
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/'
+// axios.defaults.baseURL = '/api'
 //设置默认请求头
-axios.defaults.headers = {
-    'X-Requested-With': 'XMLHttpRequest',
-    // 'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
-}
-axios.defaults.headers['Authentication-Token'] = store.state.sc_token;
+// axios.defaults.headers = {
+//     'X-Requested-With': 'XMLHttpRequest',
+//     // 'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+// }
+axios.defaults.headers['sc_token'] = store.state.sc_token;
 axios.defaults.timeout = 5000;
+
 //请求拦截器
 axios.interceptors.request.use(config => {
 
@@ -22,10 +23,9 @@ axios.interceptors.request.use(config => {
         promiseArr[config.url]('操作取消')
         promiseArr[config.url] = cancel
 
-        // if (store.state.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
-        //     config.headers.Authorization = `token ${store.state.token}`;
-        // }
-        //
+        if (store.state.sc_token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+            config.headers.sc_token = store.state.sc_token;
+        }
         // let sc_token = window.localStorage.getItem('sc-token');
         // console.log(sc_token)
         // if(sc_token){
@@ -39,9 +39,9 @@ axios.interceptors.request.use(config => {
     } else {
         promiseArr[config.url] = cancel
     }
-    if (store.state.sc_token) {
-        config.headers['Authentication-Token'] = store.state.token
-    }
+    // if (store.state.sc_token) {
+    //     config.headers['Authentication-Token'] = store.state.token
+    // }
     console.log("发送成功")
     return config
 }, error => {
@@ -52,7 +52,7 @@ axios.interceptors.request.use(config => {
 //响应拦截器即异常处理
 axios.interceptors.response.use(response => {
     return response
-    console.log("返回成功")
+    console.log(response)
 
 }, error => {
     if (error && error.response) {
@@ -62,11 +62,11 @@ axios.interceptors.response.use(response => {
                 break;
             case 401:
                 error.message = '未授权，请重新登录'
-                // this.$store.commit('del_token');
-                // router.replace({
-                //     path: '/login',
-                //     query: {redirect: router.currentRoute.fullPath}//登录成功后跳入浏览的当前页面
-                // })
+                this.$store.commit('del_token');
+                router.replace({
+                    path: '/login',
+                    // query: {redirect: router.currentRoute.fullPath}//登录成功后跳入浏览的当前页面
+                })
                 break;
             case 403:
                 error.message = '拒绝访问'
