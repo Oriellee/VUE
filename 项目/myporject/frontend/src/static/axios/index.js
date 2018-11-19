@@ -11,43 +11,50 @@ const CancelToken = axios.CancelToken;
 //     'X-Requested-With': 'XMLHttpRequest',
 //     // 'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
 // }
-axios.defaults.headers['sc_token'] = store.state.sc_token;
+axios.defaults.headers['sctoken'] = store.state.sctoken;
 axios.defaults.timeout = 5000;
 
 //请求拦截器
 axios.interceptors.request.use(config => {
 
-    // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
-    //发起请求时，取消掉当前正在进行的相同请求
-    if (promiseArr[config.url]) {
-        promiseArr[config.url]('操作取消')
-        promiseArr[config.url] = cancel
+        // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
+        //发起请求时，取消掉当前正在进行的相同请求
+        if (promiseArr[config.url]) {
+            promiseArr[config.url]('操作取消')
+            promiseArr[config.url] = cancel
 
-        if (store.state.sc_token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
-            config.headers.sc_token = store.state.sc_token;
+            if (store.state.sctoken) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+                config.headers.sctoken = store.state.sctoken;
+            }
+            // let sctoken = window.localStorage.getItem('sc-token');
+            // console.log(sctoken)
+            // if(sctoken){
+            //     console.log(sctoken)
+            //     config.headers['sc-token'] =sctoken
+            //     console.log(config)
+            else {
+                error.message = '登陆信息获取失败'
+                Message.error(error)
+                router.replace({
+                    path: '/login',
+                    // query: {redirect: router.currentRoute.fullPath}//登录成功后跳入浏览的当前页面
+                })
+            }
         }
-        // let sc_token = window.localStorage.getItem('sc-token');
-        // console.log(sc_token)
-        // if(sc_token){
-        //     console.log(sc_token)
-        //     config.headers['sc-token'] =sc_token
-        //     console.log(config)
-        // }else{
-        //     error.message = '登陆信息获取失败'
-        //     Message.error(error)
-        // }
-    } else {
-        promiseArr[config.url] = cancel
+        else {
+            promiseArr[config.url] = cancel
+        }
+// if (store.state.sctoken) {
+//     config.headers['Authentication-Token'] = store.state.token
+// }
+        console.log("发送成功")
+        return config
+    },
+    error => {
+        console.log("发送失败")
+        return Promise.reject(error)
     }
-    // if (store.state.sc_token) {
-    //     config.headers['Authentication-Token'] = store.state.token
-    // }
-    console.log("发送成功")
-    return config
-}, error => {
-    console.log("发送失败")
-    return Promise.reject(error)
-})
+)
 
 //响应拦截器即异常处理
 axios.interceptors.response.use(response => {
@@ -56,7 +63,9 @@ axios.interceptors.response.use(response => {
 
 }, error => {
     if (error && error.response) {
+        console.log(error.response)
         switch (error.response.status) {
+
             case 400:
                 error.message = '错误请求'
                 break;

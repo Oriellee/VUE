@@ -43,19 +43,19 @@ const router = new VueRouter({
         }
     ]
 })
-if (sessionStorage.getItem('sc_token')) {
-    store.commit('set_token', sessionStorage.getItem('sc_token'))
+if (sessionStorage.getItem('sctoken')) {
+    store.commit('set_token', sessionStorage.getItem('sctoken'))
 }
 
 router.beforeEach((to, from, next) => {
     // console.log(store,"1111111111111111111",store.state)
-    // if (!store.state.sc_token) {
-    // console.log("1111111",sessionStorage.getItem('sc_token'))
+    // if (!store.state.sctoken) {
+    // console.log("1111111",sessionStorage.getItem('sctoken'))
 
-    // if(sessionStorage.getItem('sc_token')){
-    //     console.log(sessionStorage.getItem('sc_token'))
+    // if(sessionStorage.getItem('sctoken')){
+    //     console.log(sessionStorage.getItem('sctoken'))
         // if (to.path.startsWith('/login')) {
-        //     sessionStorage.removeItem('sc_token')
+        //     sessionStorage.removeItem('sctoken')
         //     next()
         // } else {
         // next({path: '/login'})
@@ -65,14 +65,14 @@ router.beforeEach((to, from, next) => {
     // }
     if (to.path.startsWith('/login')) {
         console.log("aaaaaaaaaaaaaaaaaaaaa",window.sessionStorage)
-        window.sessionStorage.removeItem('sc_token')
+        window.sessionStorage.removeItem('sctoken')
         console.log("bbbbbbbbbbbbbbbbbbbbbb",window.sessionStorage)
         next()
     } else {
-        console.log(store.state.sc_token)
-        if (store.state.sc_token) {
+        console.log(store.state.sctoken)
+        if (store.state.sctoken) {
             next()
-            console.log(store,"1111111",store.state.sc_token)
+            console.log(store,"1111111",store.state.sctoken)
         }else{
             next({path: '/login'})
         }

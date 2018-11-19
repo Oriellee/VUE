@@ -5,8 +5,8 @@
         <el-form-item prop="username">
             <el-input type="text" v-model="account.username" auto-complete="off" placeholder="账号"></el-input>
         </el-form-item>
-        <el-form-item prop="pwd">
-            <el-input type="password" v-model="account.pwd" auto-complete="off" placeholder="密码"></el-input>
+        <el-form-item prop="password">
+            <el-input type="password" v-model="account.password" auto-complete="off" placeholder="密码"></el-input>
         </el-form-item>
         <!--<el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>-->
         <el-form-item style="width:100%;">
@@ -27,14 +27,14 @@
                 loading: false,
                 account: {
                     username: 'admin',
-                    pwd: '123456'
+                    password: 'admin'
                 },
                 rules: {
                     username: [
                         {required: true, message: '请输入账号', trigger: 'blur'},
                         //{ validator: validaePass }
                     ],
-                    pwd: [
+                    password: [
                         {required: true, message: '请输入密码', trigger: 'blur'},
                         //{ validator: validaePass2 }
                     ]
@@ -48,18 +48,17 @@
                 this.$refs.AccountFrom.validate((valid) => {
                     if (valid) {
                         this.loading = true;
-                        let loginParams = {username: this.account.username, pwd: this.account.pwd};
+                        let loginParams = {username: this.account.username, password: this.account.password};
 
                         API.post('/api/login',loginParams).then(function (result) {
                             that.loading = false;
-                            console.log(result)
-                            if (result.data && result.data.id) {
-                                console.log("aaa")
-                                store.commit('set_token', result.data['sc_token']);
-                                console.log()
-                                if (store.state.sc_token) {
+                            console.log(result.headers.sctoken)
+                            if (result.headers.sctoken) {
+                                store.commit('set_token', result.headers.sctoken);
+                                console.log("store.state.sctoken",store.state.sctoken)
+                                if (store.state.sctoken) {
                                     that.$router.push('/')
-                                    console.log(store.state.sc_token)
+                                    console.log(store.state.sctoken)
                                 } else {
                                     that.$router.replace('/login');
                                 }

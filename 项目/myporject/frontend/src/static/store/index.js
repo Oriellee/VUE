@@ -5,16 +5,16 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state:{
-        sc_token:''
+        sctoken:''
     },
     mutations:{
         set_token(state,token) {
-            state.sc_token = token;
-            sessionStorage.sc_token = token
+            state.sctoken = token;
+            sessionStorage.sctoken = token
         },
         del_token(state) {
-            state.sc_token = '';
-            sessionStorage.removeItem('sc_token')
+            state.sctoken = '';
+            sessionStorage.removeItem('sctoken')
         }
     }
 });
