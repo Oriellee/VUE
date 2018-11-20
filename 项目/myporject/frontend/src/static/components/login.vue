@@ -75,7 +75,7 @@
                         }).catch(function (error) {
                             that.loading = false;
                             console.log(error);
-                            that.$message.error({showClose: true, message: '请求出现异常', duration: 2000});
+                            that.$message.error({showClose: true, message: '登陆接口调用失败', duration: 2000});
                         });
                     }
                 });

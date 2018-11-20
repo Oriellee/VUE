@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {Message, MessageBox} from 'element-ui'
 import store from '../store/index'
+import router from '../router/index'
 
 let cancel, promiseArr = {}
 const CancelToken = axios.CancelToken;
@@ -16,26 +17,21 @@ axios.defaults.timeout = 5000;
 
 //请求拦截器
 axios.interceptors.request.use(config => {
-
         // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
         //发起请求时，取消掉当前正在进行的相同请求
         if (promiseArr[config.url]) {
             promiseArr[config.url]('操作取消')
-            promiseArr[config.url] = cancel
+            promiseArr[config.url] = cancel;
 
-            if (store.state.sctoken) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+            console.log("store.state.sctoken",store.state.sctoken)
+            if (store.state.sctoken) {
+                // 判断是否存在token，如果存在的话，则每个http header都加上token
                 config.headers.sctoken = store.state.sctoken;
             }
-            // let sctoken = window.localStorage.getItem('sc-token');
-            // console.log(sctoken)
-            // if(sctoken){
-            //     console.log(sctoken)
-            //     config.headers['sc-token'] =sctoken
-            //     console.log(config)
             else {
                 error.message = '登陆信息获取失败'
                 Message.error(error)
-                router.replace({
+                router.path({
                     path: '/login',
                     // query: {redirect: router.currentRoute.fullPath}//登录成功后跳入浏览的当前页面
                 })
@@ -44,9 +40,6 @@ axios.interceptors.request.use(config => {
         else {
             promiseArr[config.url] = cancel
         }
-// if (store.state.sctoken) {
-//     config.headers['Authentication-Token'] = store.state.token
-// }
         console.log("发送成功")
         return config
     },
@@ -59,8 +52,6 @@ axios.interceptors.request.use(config => {
 //响应拦截器即异常处理
 axios.interceptors.response.use(response => {
     return response
-    console.log(response)
-
 }, error => {
     if (error && error.response) {
         console.log(error.response)
@@ -71,11 +62,8 @@ axios.interceptors.response.use(response => {
                 break;
             case 401:
                 error.message = '未授权，请重新登录'
-                this.$store.commit('del_token');
-                router.replace({
-                    path: '/login',
-                    // query: {redirect: router.currentRoute.fullPath}//登录成功后跳入浏览的当前页面
-                })
+                store.commit('del_token');
+                router.replace('/login')
                 break;
             case 403:
                 error.message = '拒绝访问'
@@ -132,7 +120,9 @@ export default {
                 })
             }).then(res => {
                 resolve(res)
-            })
+            }).catch(err => {
+                reject(err);
+            });
         })
     },
     //post请求
@@ -146,8 +136,10 @@ export default {
                     cancel = c
                 })
             }).then(res => {
-                resolve(res)
-            })
+                resolve(res);
+            }).catch(err => {
+                reject(err);
+            });
         })
     }
 }

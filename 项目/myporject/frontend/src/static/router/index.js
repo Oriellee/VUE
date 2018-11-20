@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '@/static/store/index';
-console.log("---------------------",store)
+// console.log("---------------------",store)
 
 Vue.use(VueRouter);
 
@@ -64,17 +64,17 @@ router.beforeEach((to, from, next) => {
     //     console.log(store,"1111111111111111111",store.state)
     // }
     if (to.path.startsWith('/login')) {
-        console.log("aaaaaaaaaaaaaaaaaaaaa",window.sessionStorage)
-        window.sessionStorage.removeItem('sctoken')
-        console.log("bbbbbbbbbbbbbbbbbbbbbb",window.sessionStorage)
+        // console.log("aaaaaaaaaaaaaaaaaaaaa",window.sessionStorage)
+        store.commit('del_token');
+        // console.log("bbbbbbbbbbbbbbbbbbbbbb",window.sessionStorage)
         next()
     } else {
-        console.log(store.state.sctoken)
+        // console.log(store.state.sctoken)
         if (store.state.sctoken) {
             next()
-            console.log(store,"1111111",store.state.sctoken)
+            // console.log(store,"1111111",store.state.sctoken)
         }else{
-            next({path: '/login'})
+            next('/login')
         }
 
 

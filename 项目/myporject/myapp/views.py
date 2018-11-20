@@ -2,12 +2,14 @@ from django.shortcuts import render
 from . import models
 import json
 from django.http import HttpResponse
-from rest_framework import status
+# from rest_framework import status
 import random
 from . import redis
 from django.core.cache import cache
 from django.core import signing
 import time
+
+
 # from rest_framework import status
 
 # response = HttpResponse()
@@ -17,26 +19,36 @@ import time
 
 
 # Create your views here.
+def profile(request):
+    bbb = cache.get('sctoken')  # 获取key为v的缓存
+    if bbb:
+        response = HttpResponse()
+        response["sctoken"] = bbb
+        return response
+    else:
+        return json_response_error("没权限", 401)
+
 
 def get_menus(request):
     menus = []
     aaa = request.META.get("HTTP_SCTOKEN", None)
-    print("aaaaaaaaaa", aaa)
     # cache.set('sctoken', aaa, 60 * 60)
     bbb = cache.get('sctoken')  # 获取key为v的缓存
     if bbb == aaa:
         menus = list(models.Menus.objects.all().values())
         print("success", bbb)
+        return json_response(menus)
     else:
-        return json_response_error("bad message request", 401)
-    return json_response(menus)
+        print("fail")
+        return json_response_error("token已超时", 401)
 
 
-def json_response(obj=None, status=status.HTTP_200_OK):
+
+def json_response(obj):
     str_output = ""
     if obj != None:
         str_output = json.dumps(obj, ensure_ascii=False)
-    return HttpResponse(str_output, status)
+    return HttpResponse(str_output, 200)
 
 
 def json_request_post(request):
@@ -48,10 +60,10 @@ def json_request_post(request):
 def json_response_error(msg, status):
     # print("==========================",status,status.HTTP_400_BAD_REQUEST)
     resp = {"message": msg, "status": status}
-    return HttpResponse(json.dumps(resp),status)
+    return HttpResponse(json.dumps(resp), status=status)
 
 
-def set_session(username,password, request, response):
+def set_session(username, password, request, response):
     time_now = time.time()
     key = None
     bbb = cache.get('sctoken')
@@ -59,7 +71,7 @@ def set_session(username,password, request, response):
         response["sctoken"] = bbb
     else:
         judge = username + str(time_now)
-        value = signing.dumps({username:password})
+        value = signing.dumps({username: password})
         src = signing.loads(value)
         # print("3333333333333333333333333333",value)
         # print(src)
@@ -82,7 +94,7 @@ def login(request):
     if len(userobj) <= 0:
         return json_response_error("authentication failed", 401)
     response = HttpResponse()
-    response = set_session(username,password, request, response)
+    response = set_session(username, password, request, response)
     cache.set('sctoken', response["sctoken"], 60)
     bbb = cache.get('sctoken')  # 获取key为v的缓存
     print("sctoken", bbb)

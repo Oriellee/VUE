@@ -9,7 +9,7 @@ import '@/static/assets/styles/main.scss';
 // import Vuex from 'vuex'
 import store from './static/store/index.js'
 
-console.log(store)
+// console.log(store)
 // Vue.use(Vuex)
 
 Vue.use(ElementUI, {size: 'small', zIndex: 3000});
