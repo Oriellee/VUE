@@ -34,7 +34,7 @@ def get_menus(request):
     aaa = request.META.get("HTTP_SCTOKEN", None)
     # cache.set('sctoken', aaa, 60 * 60)
     bbb = cache.get('sctoken')  # 获取key为v的缓存
-    if bbb == aaa:
+    if bbb == aaa and not bbb is None:
         menus = list(models.Menus.objects.all().values())
         print("success", bbb)
         return json_response(menus)
@@ -88,11 +88,11 @@ def login(request):
     username = obj.get("username")
     password = obj.get("password")
     if username == "" or password == "":
-        return json_response_error("bad message request", 400)
+        return json_response_error("请输入用户信息", 400)
 
     userobj = models.User.objects.filter(username=username, password=password)
     if len(userobj) <= 0:
-        return json_response_error("authentication failed", 401)
+        return json_response_error("用户名或者密码错误", 402)
     response = HttpResponse()
     response = set_session(username, password, request, response)
     cache.set('sctoken', response["sctoken"], 60)

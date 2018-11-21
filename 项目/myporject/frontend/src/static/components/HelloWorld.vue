@@ -49,7 +49,7 @@
         },
         methods: {
             fetchData() {
-                console.log(this.$store.state.count)
+                // console.log(this.$store.state.count)
                 let that = this
                 API.get('/api/menus').then(function (res) {
                     console.log(res)

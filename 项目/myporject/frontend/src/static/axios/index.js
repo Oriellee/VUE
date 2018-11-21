@@ -18,28 +18,18 @@ axios.defaults.timeout = 5000;
 //请求拦截器
 axios.interceptors.request.use(config => {
         // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
-        //发起请求时，取消掉当前正在进行的相同请求
-        if (promiseArr[config.url]) {
-            promiseArr[config.url]('操作取消')
-            promiseArr[config.url] = cancel;
+        if (store.state.sctoken) {
+            // 判断是否存在token，如果存在的话，则每个http header都加上token
+            config.headers.sctoken = store.state.sctoken;
+            console.log("添加token")
 
-            console.log("store.state.sctoken",store.state.sctoken)
-            if (store.state.sctoken) {
-                // 判断是否存在token，如果存在的话，则每个http header都加上token
-                config.headers.sctoken = store.state.sctoken;
-            }
-            else {
-                error.message = '登陆信息获取失败'
-                Message.error(error)
-                router.path({
-                    path: '/login',
-                    // query: {redirect: router.currentRoute.fullPath}//登录成功后跳入浏览的当前页面
-                })
-            }
         }
         else {
-            promiseArr[config.url] = cancel
+            console.log("没有token信息,添加失败！！！")
+            // router.path('/login')
         }
+        //发起请求时，取消掉当前正在进行的相同请求
+
         console.log("发送成功")
         return config
     },
@@ -51,19 +41,22 @@ axios.interceptors.request.use(config => {
 
 //响应拦截器即异常处理
 axios.interceptors.response.use(response => {
+    console.log("返回成功")
     return response
 }, error => {
     if (error && error.response) {
         console.log(error.response)
         switch (error.response.status) {
-
             case 400:
                 error.message = '错误请求'
                 break;
             case 401:
                 error.message = '未授权，请重新登录'
                 store.commit('del_token');
-                router.replace('/login')
+                router.replace('/login');
+                break;
+            case 402:
+                error.message = '用户名或者密码错误'
                 break;
             case 403:
                 error.message = '拒绝访问'
@@ -102,7 +95,7 @@ axios.interceptors.response.use(response => {
         error.message = "连接到服务器失败"
     }
     Message.error(error)
-    console.log("返回失败")
+    console.log("返回失败",error)
     return Promise.resolve(error.response)
 })
 

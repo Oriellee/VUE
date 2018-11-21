@@ -14,6 +14,7 @@ const store = new Vuex.Store({
         },
         del_token(state) {
             state.sctoken = '';
+            console.log()
             sessionStorage.removeItem('sctoken')
         }
     }

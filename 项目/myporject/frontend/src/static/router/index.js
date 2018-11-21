@@ -5,9 +5,11 @@ import store from '@/static/store/index';
 
 Vue.use(VueRouter);
 
-import User from '@/static/components/foo'
+import Index from '@/static/components/index'
 import Hello from '@/static/components/HelloWorld'
 import AAA from '@/static/components/aaa'
+import Foo from '@/static/components/foo'
+import Bar from '@/static/components/bar'
 import Error from '@/static/components/404'
 
 // 懒加载方式，当路由被访问的时候才加载对应组件
@@ -25,17 +27,23 @@ const router = new VueRouter({
             name: '404',
             component: Error
         },
+        // {
+        //     path: '/',
+        //     component: User,
+        // },
         {
             path: '/',
-            component: User,
-        },
-        {
-            path: '/user/:id',
-            component: User,
+            component: Index,
             children: [{
                 path: 'hello',
                 component: Hello,
             }, {
+                path: 'foo',
+                component: Foo,
+            },{
+                path: 'bar',
+                component: Bar,
+            },{
                 path: 'aaa/:id',
                 component: AAA,
             }
@@ -48,41 +56,29 @@ if (sessionStorage.getItem('sctoken')) {
 }
 
 router.beforeEach((to, from, next) => {
-    // console.log(store,"1111111111111111111",store.state)
-    // if (!store.state.sctoken) {
-    // console.log("1111111",sessionStorage.getItem('sctoken'))
-
-    // if(sessionStorage.getItem('sctoken')){
-    //     console.log(sessionStorage.getItem('sctoken'))
-        // if (to.path.startsWith('/login')) {
-        //     sessionStorage.removeItem('sctoken')
-        //     next()
-        // } else {
-        // next({path: '/login'})
-        // }
-    // } else {
-    //     console.log(store,"1111111111111111111",store.state)
-    // }
+    console.log(from,"----from,to---------",to)
     if (to.path.startsWith('/login')) {
-        // console.log("aaaaaaaaaaaaaaaaaaaaa",window.sessionStorage)
         store.commit('del_token');
-        // console.log("bbbbbbbbbbbbbbbbbbbbbb",window.sessionStorage)
+        console.log("==========",store.state.sctoken)
         next()
     } else {
-        // console.log(store.state.sctoken)
+        console.log("nologin",store.state.sctoken)
         if (store.state.sctoken) {
-            next()
-            // console.log(store,"1111111",store.state.sctoken)
-        }else{
+            console.log("跳转到主页",new Date(),store.state.sctoken)
+            // let toPath = to.path;
+            // let fromPath = from.path;
+            // if(toPath === fromPath){
+            //     console.log("刷新页面！！！",fromPath,toPath);
+            //     next(fromPath)
+            // }else{
+            //     console.log("跳转页面！！！",fromPath,toPath);
+                next()
+            // }
+        } else {
             next('/login')
+            // next()
         }
-
-
-        // if (!user) {
-        //     next({path: '/login'})
-        // } else {
-        }
-    // }
-})
+    }
+});
 
 export default router;

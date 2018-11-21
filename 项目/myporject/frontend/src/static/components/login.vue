@@ -57,8 +57,9 @@
                                 store.commit('set_token', result.headers.sctoken);
                                 console.log("store.state.sctoken",store.state.sctoken)
                                 if (store.state.sctoken) {
-                                    that.$router.push('/')
-                                    console.log(store.state.sctoken)
+                                    console.log("登陆完成后！！！！！！！！！！",store.state.sctoken)
+                                    that.$router.push('/hello')
+
                                 } else {
                                     that.$router.replace('/login');
                                 }
