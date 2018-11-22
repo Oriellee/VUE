@@ -1,16 +1,11 @@
 <template>
     <div id="app">
-        <!-- 路由出口 -->
         <!-- 路由匹配到的组件将渲染在这里 -->
         <router-view></router-view>
     </div>
 </template>
 
 <script>
-    // import HelloWorld from './components/HelloWorld.vue'
-    import API from 'axios/index'
-    import store from '@/static/store/index';
-    import router from '@/static/router/index';
 
     export default {
         name: 'app',
@@ -22,20 +17,19 @@
 
     };
 
-    // import { app } from './app'
-    //
-    // app.$mount('#app')
-
-
 </script>
 
 <style>
+    html,body{
+        height: 100%;
+    }
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
-        margin-top: 60px;
+        background-color:#dfe9fb ;
+        height: 100%;
     }
 </style>

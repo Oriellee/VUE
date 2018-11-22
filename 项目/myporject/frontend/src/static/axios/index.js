@@ -3,101 +3,88 @@ import {Message, MessageBox} from 'element-ui'
 import store from '../store/index'
 import router from '../router/index'
 
-let cancel, promiseArr = {}
+let cancel, promiseArr = {};
 const CancelToken = axios.CancelToken;
 
-// axios.defaults.baseURL = '/api'
-//设置默认请求头
-// axios.defaults.headers = {
-//     'X-Requested-With': 'XMLHttpRequest',
-//     // 'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
-// }
+
 axios.defaults.headers['sctoken'] = store.state.sctoken;
 axios.defaults.timeout = 5000;
 
 //请求拦截器
 axios.interceptors.request.use(config => {
-        // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
         if (store.state.sctoken) {
             // 判断是否存在token，如果存在的话，则每个http header都加上token
             config.headers.sctoken = store.state.sctoken;
-            console.log("添加token")
-
         }
-        else {
-            console.log("没有token信息,添加失败！！！")
-            // router.path('/login')
-        }
-        //发起请求时，取消掉当前正在进行的相同请求
-
-        console.log("发送成功")
         return config
     },
     error => {
-        console.log("发送失败")
         return Promise.reject(error)
     }
-)
+);
 
 //响应拦截器即异常处理
 axios.interceptors.response.use(response => {
-    console.log("返回成功")
     return response
 }, error => {
+    let errorText = "";
     if (error && error.response) {
-        console.log(error.response)
         switch (error.response.status) {
             case 400:
-                error.message = '错误请求'
+                errorText = '错误请求';
                 break;
             case 401:
-                error.message = '未授权，请重新登录'
+                errorText = '未授权，请重新登录';
                 store.commit('del_token');
                 router.replace('/login');
                 break;
             case 402:
-                error.message = '用户名或者密码错误'
+                errorText = '用户名或者密码错误';
                 break;
             case 403:
-                error.message = '拒绝访问'
+                errorText = '拒绝访问';
                 break;
             case 404:
-                error.message = '请求错误,未找到该资源'
+                errorText = '请求错误,未找到该资源';
                 break;
             case 405:
-                error.message = '请求方法未允许'
+                errorText = '请求方法未允许';
                 break;
             case 408:
-                error.message = '请求超时'
+                errorText = '请求超时';
                 break;
             case 500:
-                error.message = '服务器端出错'
+                errorText = '服务器端出错';
                 break;
             case 501:
-                error.message = '网络未实现'
+                errorText = '网络未实现';
                 break;
             case 502:
-                error.message = '网络错误'
+                errorText = '网络错误';
                 break;
             case 503:
-                error.message = '服务不可用'
+                errorText = '服务不可用';
                 break;
             case 504:
-                error.message = '网络超时'
+                errorText = '网络超时';
                 break;
             case 505:
-                error.message = 'http版本不支持该请求'
+                errorText = 'http版本不支持该请求';
                 break;
             default:
-                error.message = `连接错误${error.response.status}`
+                errorText = `连接错误${error.response.status}`
         }
     } else {
-        error.message = "连接到服务器失败"
+        errorText = "连接到服务器失败"
     }
-    Message.error(error)
-    console.log("返回失败",error)
+    Message({
+        showClose: true,
+        message: errorText,
+        type: 'error',
+        duration: 2000
+    });
     return Promise.resolve(error.response)
-})
+});
 
 
 export default {

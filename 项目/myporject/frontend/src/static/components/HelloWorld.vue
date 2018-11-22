@@ -49,14 +49,11 @@
         },
         methods: {
             fetchData() {
-                // console.log(this.$store.state.count)
-                let that = this
+                let that = this;
                 API.get('/api/menus').then(function (res) {
-                    console.log(res)
                     if(res){
                         that.test = res.data
                     }
-                    console.log(that.test)
                 }).catch()
             },
 

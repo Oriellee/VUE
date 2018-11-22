@@ -49,34 +49,16 @@
                     if (valid) {
                         this.loading = true;
                         let loginParams = {username: this.account.username, password: this.account.password};
-
-                        API.post('/api/login',loginParams).then(function (result) {
+                        API.post('/api/login', loginParams).then(function (result) {
                             that.loading = false;
-                            console.log(result.headers.sctoken)
                             if (result.headers.sctoken) {
                                 store.commit('set_token', result.headers.sctoken);
-                                console.log("store.state.sctoken",store.state.sctoken)
-                                if (store.state.sctoken) {
-                                    console.log("登陆完成后！！！！！！！！！！",store.state.sctoken)
-                                    that.$router.push('/hello')
-
-                                } else {
-                                    that.$router.replace('/login');
-                                }
+                                that.$message.success({showClose: true, message: "成功", duration: 2000});
+                                that.$router.push('/hello')
                             } else {
-                                that.$message.error({
-                                    showClose: true,
-                                    message: result.errmsg || '登录失败',
-                                    duration: 2000
-                                });
+                                that.$router.replace('/login');
                             }
-                        }, function (err) {
-                            that.loading = false;
-                            that.$message.error({showClose: true, message: err.toString(), duration: 2000});
                         }).catch(function (error) {
-                            that.loading = false;
-                            console.log(error);
-                            that.$message.error({showClose: true, message: '登陆接口调用失败', duration: 2000});
                         });
                     }
                 });
