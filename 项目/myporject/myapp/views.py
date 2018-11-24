@@ -43,5 +43,5 @@ def login(request):
         return unit.json_response_error("用户名或者密码错误", 402)
     response = HttpResponse()
     response = unit.set_session(username, password, request, response)
-    cache.set('sctoken', response["sctoken"], 60)
+    cache.set('sctoken', response["sctoken"], 60*60)
     return response

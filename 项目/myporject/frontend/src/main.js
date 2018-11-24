@@ -6,6 +6,7 @@ import App from './static/App.vue';
 import router from './static/router/index.js';
 import '@/static/assets/iconfont.css';
 import '@/static/assets/styles/main.scss';
+import 'font-awesome/css/font-awesome.min.css';
 
 Vue.use(ElementUI, {size: 'small', zIndex: 3000});
 
