@@ -36,7 +36,8 @@ def set_session(username, password, request, response):
     else:
         judge = username + str(time_now)
         value = signing.dumps({username: password})
-        src = signing.loads(value)
+        # 解码。
+        # src = signing.loads(value)
         response["sctoken"] = value
 
     return response

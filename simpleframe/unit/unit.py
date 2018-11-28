@@ -9,7 +9,7 @@ import time
 def json_response(obj):
     str_output = ""
     if obj != None:
-        str_output = json.dumps(obj, ensure_ascii=False)
+        str_output = json.dumps(obj)
     return HttpResponse(str_output, 200)
 
 
@@ -30,13 +30,40 @@ def json_response_error(msg, status):
 def set_session(username, password, request, response):
     time_now = time.time()
     key = None
-    redis_sctoken = cache.get('sctoken')
-    if redis_sctoken:
-        response["sctoken"] = redis_sctoken
+    token_dic = cache.get('token_dic')
+    if token_dic:
+        response["sctoken"] = token_dic["sctoken"]
     else:
         judge = username + str(time_now)
         value = signing.dumps({username: password})
-        src = signing.loads(value)
+        # 解码。
+        # src = signing.loads(value)
         response["sctoken"] = value
 
     return response
+
+
+def set_cache(username, sctoken):
+    cache_value = {
+        'sctoken': sctoken,
+        'username': username,
+        'time': str(time.time())
+    }
+    input_cache(sctoken, cache_value)
+    return json.dumps("success")
+
+
+def del_cache(sctoken):
+    cache.delete(sctoken)
+    return json.dumps("success")
+
+
+def update_cache(sctoken):
+    cache_value = cache.get(sctoken)
+    cache_value["time"] = str(time.time())
+    input_cache(sctoken, cache_value)
+    return json.dumps("success")
+
+
+def input_cache(key, value):
+    cache.set(key, value, 60 * 30)

@@ -79,7 +79,7 @@ axios.interceptors.response.use(response => {
         type: 'error',
         duration: 2000
     });
-    return Promise.resolve(error.response);
+    return Promise.reject(error.response);
 });
 
 export default {
@@ -94,7 +94,7 @@ export default {
                 })
             }).then(res => {
                 resolve(res);
-            }).then(err => {
+            }).catch(err => {
                 reject(err)
             })
         })

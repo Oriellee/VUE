@@ -14,7 +14,6 @@
         <el-form-item style="width:100%;">
             <el-button type="primary" style="width:100%;" @click.native.prevent="login" :loading="loading">登录
             </el-button>
-            <el-button @click="test"></el-button>
         </el-form-item>
     </el-form>
 </template>
@@ -51,7 +50,7 @@
                     if (valid) {
                         this.loading = true;
                         let loginParams = {username: this.account.username, password: this.account.password};
-                        API.post('/api/login', loginParams).then(function (result) {
+                        API.post('/api/login', loginParams).then(result => {
                             that.loading = false;
                             if (result.headers.sctoken) {
                                 store.commit('set_token', result.headers.sctoken);
@@ -60,16 +59,12 @@
                             } else {
                                 that.$router.replace('/login');
                             }
+                        }, error => {
+                            console.log(error)
                         });
                     }
                 });
             },
-            test(){
-                API.get('/api/menus').then(function (result) {
-                    console.log(result)
-                });
-
-            }
         }
     }
 </script>
