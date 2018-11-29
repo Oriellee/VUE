@@ -9,6 +9,10 @@ import json
 
 
 # Create your views here.
+# class CsfrCookie(View):
+#     response = HttpResponse()
+#     response = HttpResponse('test')
+
 class Login(View):
     def post(self, request):
         obj = unit.json_request_post(request)
@@ -34,17 +38,13 @@ class Logout(View):
 
 class Profile(View):
     def get(self, request):
-        sctoken = request.META.get("HTTP_SCTOKEN")
-        token_dic = cache.get(sctoken)
-        if token_dic:
-            user_obj = list(models.User.objects.filter(Q(username=token_dic["username"])).values())[0]
-            result = {
-                "id": user_obj['id'],
-                "username": user_obj['username']
-            }
-            return unit.json_response(result)
-        else:
-            return unit.json_response_error("没权限", 401)
+        result = {}
+        user_obj = models.User.objects.get(Q(username=unit.get_cache(request)))
+        result = {
+            "id": user_obj.id,
+            "username": user_obj.username
+        }
+        return unit.json_response(result)
 
 
 class Menu(View):

@@ -3,6 +3,10 @@ from django.http import HttpResponse
 from django.core.cache import cache
 from django.core import signing
 import time
+from sysmanger import models
+
+save_time = 60 * 30
+day_frequency = 500
 
 
 # 工具，转为json字符串。
@@ -47,7 +51,8 @@ def set_cache(username, sctoken):
     cache_value = {
         'sctoken': sctoken,
         'username': username,
-        'time': str(time.time())
+        'time': str(time.time()),
+        'frequency': 1
     }
     input_cache(sctoken, cache_value)
     return json.dumps("success")
@@ -58,12 +63,11 @@ def del_cache(sctoken):
     return json.dumps("success")
 
 
-def update_cache(sctoken):
-    cache_value = cache.get(sctoken)
-    cache_value["time"] = str(time.time())
-    input_cache(sctoken, cache_value)
-    return json.dumps("success")
-
-
 def input_cache(key, value):
-    cache.set(key, value, 60 * 30)
+    cache.set(key, value, save_time)
+
+
+def get_cache(request):
+    sctoken = request.META.get("HTTP_SCTOKEN")
+    token_dic = cache.get(sctoken)
+    return token_dic["username"]

@@ -38,6 +38,7 @@ const router = new VueRouter({
     ]
 });
 
+// 重要!!!,刷新页面时,store的状态被清空,此时需要从缓存中读取!
 if (sessionStorage.getItem('sctoken')) {
     store.commit('set_token', sessionStorage.getItem('sctoken'))
 }

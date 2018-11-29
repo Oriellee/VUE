@@ -52,6 +52,7 @@
                         let loginParams = {username: this.account.username, password: this.account.password};
                         API.post('/api/login', loginParams).then(result => {
                             that.loading = false;
+                            console.log(result)
                             if (result.headers.sctoken) {
                                 store.commit('set_token', result.headers.sctoken);
                                 that.$message.success({showClose: true, message: "成功", duration: 2000});
@@ -60,6 +61,7 @@
                                 that.$router.replace('/login');
                             }
                         }, error => {
+                            that.loading = false;
                             console.log(error)
                         });
                     }

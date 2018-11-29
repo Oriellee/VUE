@@ -1,7 +1,6 @@
-from django.conf import settings
-from django.shortcuts import redirect
 from django.core.cache import cache
 from unit import unit as unit
+import time
 
 
 class MiddlewareMixin(object):
@@ -30,7 +29,15 @@ class AuthMiddleware(MiddlewareMixin):
         else:
             token_dic = cache.get(sctoken)
             if token_dic:
-                unit.update_cache(sctoken)
+                token_dic["frequency"] = token_dic["frequency"] + 1
+                if int(token_dic["frequency"]) > unit.day_frequency:
+                    unit.del_cache(sctoken)
+                    return unit.json_response_error("调用次数太多", 405)
+                d_value = time.time() - float(token_dic["time"])
+                if d_value > unit.save_time:
+                    unit.del_cache(sctoken)
+                    return unit.json_response_error("登录超过规定时长，请重新登录", 406)
+                unit.input_cache(sctoken, token_dic)
             else:
-                return unit.json_response_error("sctoken鉴权失败", 401)
+                return unit.json_response_error("sctoken不存在", 401)
         return None

@@ -44,7 +44,14 @@ axios.interceptors.response.use(response => {
                 errorText = '请求错误,未找到该资源';
                 break;
             case 405:
-                errorText = '请求方法未允许';
+                errorText = '短时间内调用次数太多';
+                store.commit('del_token');
+                router.replace('/login');
+                break;
+            case 406:
+                errorText = '登录超过规定时长，请重新登录';
+                store.commit('del_token');
+                router.replace('/login');
                 break;
             case 408:
                 errorText = '请求超时';
