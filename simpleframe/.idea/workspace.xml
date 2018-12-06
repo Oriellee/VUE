@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="109a8eca-ce50-42f2-8363-eb9ff501361a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/user/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../collectbits/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../collectbits/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unit/unit.py" beforeDir="false" afterPath="$PROJECT_DIR$/unit/unit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/static/assets/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/assets/styles/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/static/components/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/components/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/static/components/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/components/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/static/components/test.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/static/components/test.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simpleframe/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/simpleframe/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simpleframe/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/simpleframe/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sysmanger/middleware.py" beforeDir="false" afterPath="$PROJECT_DIR$/sysmanger/middleware.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sysmanger/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/sysmanger/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../项目/vue-admin-master/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../项目/vue-admin-master/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,48 +21,164 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-821875392">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="13" />
+          <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.5" value="3" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="dummy" value="2" />
           <entry key="js" value="49" />
-          <entry key="py" value="2589" />
+          <entry key="py" value="2875" />
+          <entry key="py@simpleframe" value="12" />
+          <entry key="scss" value="1" />
+          <entry key="vue" value="91" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key="CommandLine" value="12" />
           <entry key="JavaScript" value="49" />
-          <entry key="Python" value="2589" />
+          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="Python" value="2875" />
+          <entry key="SCSS" value="1" />
+          <entry key="Vue.js" value="91" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="js" value="1" />
-          <entry key="py" value="44" />
+          <entry key="js" value="2" />
+          <entry key="py" value="56" />
+          <entry key="scss" value="1" />
+          <entry key="vue" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JavaScript" value="1" />
+          <entry key="JavaScript" value="2" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="43" />
+          <entry key="Python" value="55" />
+          <entry key="SCSS" value="1" />
+          <entry key="Vue.js" value="7" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/simpleframe/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1053">
+              <caret line="39" selection-start-line="39" selection-end-line="39" selection-end-column="39" />
+              <folding>
+                <element signature="e#312#321#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/app_common.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/user/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="81">
+              <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/simpleframe/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="353">
+              <caret line="27" column="58" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="58" />
+              <folding>
+                <element signature="e#635#667#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sysmanger/middleware.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="648">
+              <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sysmanger/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="81">
+              <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/user/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+                <marker date="1544098858351" expanded="true" signature="141:146" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/unit/unit.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sysmanger/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="81">
+              <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -87,15 +213,22 @@
         <option value="$PROJECT_DIR$/menu/models.py" />
         <option value="$PROJECT_DIR$/simpleframe/__init__.py" />
         <option value="$PROJECT_DIR$/sysmanger/models.py" />
-        <option value="$PROJECT_DIR$/simpleframe/urls.py" />
         <option value="$PROJECT_DIR$/frontend/vue.config.js" />
         <option value="$PROJECT_DIR$/sysmanger/url.py" />
         <option value="$PROJECT_DIR$/middledir/mymiddleware.py" />
         <option value="$PROJECT_DIR$/middledir/middleware.py" />
-        <option value="$PROJECT_DIR$/simpleframe/settings.py" />
         <option value="$PROJECT_DIR$/sysmanger/views.py" />
-        <option value="$PROJECT_DIR$/sysmanger/middleware.py" />
         <option value="$PROJECT_DIR$/unit/unit.py" />
+        <option value="$PROJECT_DIR$/user/urls.py" />
+        <option value="$PROJECT_DIR$/simpleframe/settings.py" />
+        <option value="$PROJECT_DIR$/frontend/src/static/components/login.vue" />
+        <option value="$PROJECT_DIR$/sysmanger/middleware.py" />
+        <option value="$PROJECT_DIR$/framework/app_common.py" />
+        <option value="$PROJECT_DIR$/frontend/src/static/components/test.vue" />
+        <option value="$PROJECT_DIR$/user/views.py" />
+        <option value="$PROJECT_DIR$/simpleframe/urls.py" />
+        <option value="$PROJECT_DIR$/frontend/src/static/assets/styles/main.scss" />
+        <option value="$PROJECT_DIR$/frontend/src/static/components/index.vue" />
       </list>
     </option>
   </component>
@@ -113,9 +246,9 @@
       <path value="$PROJECT_DIR$/frontend/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="731" />
-    <option name="width" value="1196" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="924" />
+    <option name="width" value="1003" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -124,13 +257,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="simpleframe" type="b2602c69:ProjectViewProjectNode" />
               <item name="simpleframe" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="simpleframe" type="b2602c69:ProjectViewProjectNode" />
+              <item name="simpleframe" type="462c0819:PsiDirectoryNode" />
+              <item name="framework" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="simpleframe" type="b2602c69:ProjectViewProjectNode" />
@@ -147,15 +284,21 @@
               <item name="simpleframe" type="462c0819:PsiDirectoryNode" />
               <item name="unit" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="simpleframe" type="b2602c69:ProjectViewProjectNode" />
+              <item name="simpleframe" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../collectbits/frontend" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../项目/vue-admin-master" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -217,31 +360,45 @@
       <updated>1543230984426</updated>
       <workItem from="1543823208350" duration="2402000" />
       <workItem from="1543842126617" duration="36000" />
+      <workItem from="1544091865722" duration="24000" />
+      <workItem from="1544091917280" duration="3545000" />
+      <workItem from="1544099307901" duration="2170000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2438000" />
+    <option name="totallyTimeSpent" value="8177000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="731" y="0" width="1196" height="1047" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24265976" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15138593" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32899022" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32899022" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.20504385" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.36373508" />
       <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="bottom" id="manage.py@simpleframe" order="13" weight="0.32899022" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -266,13 +423,6 @@
     <entry file="file://$PROJECT_DIR$/menu/models.py" />
     <entry file="file://$PROJECT_DIR$/service/models.py" />
     <entry file="file://$PROJECT_DIR$/menu/apps.py" />
-    <entry file="file://$PROJECT_DIR$/simpleframe/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/vue.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
@@ -347,27 +497,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simpleframe/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sysmanger/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sysmanger/middleware.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/soft/python3/Lib/site-packages/django/core/cache/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
@@ -375,20 +504,125 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sysmanger/url.py">
+    <entry file="file://$PROJECT_DIR$/frontend/src/static/components/login.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="16" />
+        <state relative-caret-position="243">
+          <caret line="52" column="49" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/static/components/HelloWorld.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-555" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simpleframe/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1053">
+          <caret line="39" selection-start-line="39" selection-end-line="39" selection-end-column="39" />
+          <folding>
+            <element signature="e#312#321#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/app_common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sysmanger/middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sysmanger/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <marker date="1544098858351" expanded="true" signature="141:146" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/unit/unit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        <state relative-caret-position="216">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sysmanger/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simpleframe/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="27" column="58" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="58" />
           <folding>
-            <marker date="1543824605547" expanded="true" signature="1435:1436" ph="..." />
+            <element signature="e#635#667#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/static/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-324" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/static/assets/styles/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/static/components/test.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/static/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-405" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/static/components/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="27" column="71" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="71" />
         </state>
       </provider>
     </entry>

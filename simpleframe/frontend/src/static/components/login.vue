@@ -50,7 +50,7 @@
                     if (valid) {
                         this.loading = true;
                         let loginParams = {username: this.account.username, password: this.account.password};
-                        API.post('/api/login', loginParams).then(result => {
+                        API.post('/api/sysmanager/login', loginParams).then(result => {
                             that.loading = false;
                             console.log(result)
                             if (result.headers.sctoken) {

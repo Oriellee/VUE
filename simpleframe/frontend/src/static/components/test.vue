@@ -18,7 +18,7 @@
         methods: {
             getMenus() {
                 let that = this;
-                API.get('/api/menus').then(res => {
+                API.get('/api/sysmanager/menus').then(res => {
                     that.msg = res.data
                 }, error => {
                 })

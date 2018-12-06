@@ -16,10 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url, include
 from django.views.generic import TemplateView
-import sysmanger.url
+import sysmanger.urls
+import framework.app_common
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/', include(sysmanger.url)),
+    url(r'^api/sysmanager/', include(sysmanger.urls)),
     url(r'^$', TemplateView.as_view(template_name="index.html")),
 ]
+
+urls = framework.app_common.get_apps_urlpatterns(__file__)
+urlpatterns.extend(urls)
