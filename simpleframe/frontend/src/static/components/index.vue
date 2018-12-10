@@ -14,26 +14,22 @@
             <el-aside class="aside" style="width: 220px;">
                 <el-menu
                         :default-active="$route.path"
+                        :unique-opened="uniqueOpened"
                         class="el-menu-vertical-demo"
-                        background-color="#2a2d39"
-                        text-color="#818492"
-                        active-text-color="#fff" v-for="item in menu">
+                        active-text-color="#fff"
+                        v-for="item in menu">
                     <el-submenu :index="item.index">
                         <template slot="title">
                             <i :class="item.icon" class="menu-logo"></i>
                             <span>{{item.name}}</span>
                         </template>
-                        <el-menu-item v-for="(child,childIndex) in item.child" :index="item.index+'-'+child.index"
-                        >
-                            <router-link :to="child.url">{{child.name}}</router-link>
+                        <el-menu-item v-for="(child,childIndex) in item.child" :index="child.url"
+                                      @click="goto(child.url)">
+                            {{child.name}}
+                            <span></span>
                         </el-menu-item>
                     </el-submenu>
                 </el-menu>
-                <!--<router-link to="/foo">Go to Foo</router-link>-->
-                <!--<router-link to="/bar">Go to Bar</router-link>-->
-                <!--<router-link to="/aaa/hahahah">aaa</router-link>-->
-                <!--<router-link to="/hello">hello</router-link>-->
-                <!--<router-link to="/login">login</router-link>-->
             </el-aside>
             <el-container class="content">
                 <el-main><h1>这是右侧内容区域</h1>
@@ -54,6 +50,7 @@
         data() {
             return {
                 username: "",
+                uniqueOpened: true,
                 menu: [{
                     "name": "系统管理",
                     "icon": "fa fa-user-o",
@@ -72,9 +69,9 @@
                         "name": "数据中心",
                         "icon": "fa fa-database",
                         "index": "2",
-                        "child": [{"name": "数据集管理", "url": "/hello", "index": "1"}, {
+                        "child": [{"name": "数据集管理", "url": "/111", "index": "1"}, {
                             "name": "导入数据集",
-                            "url": "/foo",
+                            "url": "/222",
                             "index": "2"
                         }]
                     },
@@ -111,6 +108,9 @@
                     that.$router.replace('/login');
                 })
             },
+            goto(path) {
+                this.$router.push(path)
+            },
             logout() {
                 let that = this;
                 API.get('/api/sysmanager/logout').then(res => {
@@ -127,17 +127,14 @@
     }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
     @aside: 220px;
     @theme-bgcolor: #2a2d39;
     @font-color: #818492;
-    html, body, .father-box {
+    .father-box {
         height: 100%;
         background-color: #1a1c24;
         color: @font-color;
-        * {
-            /*border: 1px solid red;*/
-        }
     }
 
     .header {
@@ -179,22 +176,39 @@
             width: @aside;
             background-color: @theme-bgcolor;
             .el-menu {
+                color: #818492;
+                border: none;
+                .el-submenu {
+                    .el-submenu__title {
+                        background-color: #333744;
+                        color: @font-color;
+                    }
+                }
+                .el-submenu {
+                    &.is-opened {
+                        .el-submenu__title, .el-submenu__title i:first-child {
+                            color: #ffffff;
+                        }
+                    }
+                }
                 .menu-logo {
                     margin-right: 5px;
                 }
-                .el-menu-item{
+                .el-menu-item {
                     padding: 0;
-                    a {
-                        color: @font-color;
-                        width: 100%;
-                        height: 100%;
-                        display: inline-block;
+                    color: @font-color;
+                    &.is-active {
+                        background-color: #222531;
+                        box-shadow: 5px 2px 5px #11131a inset;
+                        > span {
+                            width: 5px;
+                            height: 100%;
+                            background-color: #018ece;
+                            display: inline-block;
+                            float: right;
+                        }
                     }
                 }
-
-                /*a:active{*/
-                /*color: #fff;*/
-                /*}*/
             }
         }
     }
