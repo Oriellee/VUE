@@ -24,7 +24,7 @@ class AuthMiddleware(MiddlewareMixin):
     def process_request(self, request):
         sctoken = request.META.get("HTTP_SCTOKEN")
         url = request.path
-        if url == '/api/sysmanager/login':
+        if url == '/api/sysmanger/login':
             unit.del_cache(sctoken)
         else:
             token_dic = cache.get(sctoken)

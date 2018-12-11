@@ -21,7 +21,6 @@ import framework.app_common
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/sysmanager/', include(sysmanger.urls)),
     url(r'^$', TemplateView.as_view(template_name="index.html")),
 ]
 

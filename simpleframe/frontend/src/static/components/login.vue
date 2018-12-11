@@ -1,21 +1,23 @@
 <template>
-    <el-form ref="AccountFrom" :model="account" :rules="rules" label-position="left" label-width="0px"
-             class="demo-ruleForm login-container">
-        <h3 class="title">管理员登录</h3>
-        <el-form-item prop="username">
-            <el-input type="text" v-model="account.username" prefix-icon="el-icon-search" auto-complete="off"
-                      placeholder="账号"></el-input>
-        </el-form-item>
-        <el-form-item prop="password">
-            <el-input type="password" v-model="account.password" prefix-icon="el-icon-search" auto-complete="off"
-                      placeholder="密码"></el-input>
-        </el-form-item>
-        <!--<el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>-->
-        <el-form-item style="width:100%;">
-            <el-button type="primary" style="width:100%;" @click.native.prevent="login" :loading="loading">登录
-            </el-button>
-        </el-form-item>
-    </el-form>
+    <div class="father-box">
+        <el-form ref="AccountFrom" :model="account" :rules="rules" label-position="left" label-width="0px"
+                 class="demo-ruleForm login-container">
+            <h3 class="title">管理员登录</h3>
+            <el-form-item prop="username">
+                <el-input type="text" v-model="account.username" prefix-icon="el-icon-search" auto-complete="off"
+                          placeholder="账号"></el-input>
+            </el-form-item>
+            <el-form-item prop="password">
+                <el-input type="password" v-model="account.password" prefix-icon="el-icon-search" auto-complete="off"
+                          placeholder="密码"></el-input>
+            </el-form-item>
+            <!--<el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>-->
+            <el-form-item style="width:100%;">
+                <el-button type="primary" style="width:100%;" @click.native.prevent="login" :loading="loading">登录
+                </el-button>
+            </el-form-item>
+        </el-form>
+    </div>
 </template>
 
 <script>
@@ -50,13 +52,13 @@
                     if (valid) {
                         this.loading = true;
                         let loginParams = {username: this.account.username, password: this.account.password};
-                        API.post('/api/sysmanager/login', loginParams).then(result => {
+                        API.post('/api/sysmanger/login', loginParams).then(result => {
                             that.loading = false;
                             console.log(result)
                             if (result.headers.sctoken) {
                                 store.commit('set_token', result.headers.sctoken);
                                 that.$message.success({showClose: true, message: "成功", duration: 2000});
-                                that.$router.push('/hello')
+                                that.$router.push('/index')
                             } else {
                                 that.$router.replace('/login');
                             }
@@ -75,19 +77,28 @@
         background: #DFE9FB;
     }
 </style>
-<style lang="scss" scoped>
+<style lang="less" scoped>
+    .father-box {
+        width: 100%;
+        height: 100%;
+        background-image: url(" ../assets/images/login_bg.jpg");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        overflow: auto;
+    }
+
     .login-container {
         /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
         -webkit-border-radius: 5px;
         border-radius: 5px;
         -moz-border-radius: 5px;
         background-clip: padding-box;
-        margin: 160px auto;
+        margin: 240px auto 0;
         width: 350px;
         padding: 35px 35px 15px 35px;
-        background: #fff;
-        border: 1px solid #eaeaea;
-        box-shadow: 0 0 25px #cac6c6;
+        background: rgba(255,255,255,0.5);
+        border: 1px solid #a1b5c1;
+        box-shadow: 0 0 15px #a1b5c1;
 
         background: -ms-linear-gradient(top, #ace, #00C1DE); /* IE 10 */
         background: -moz-linear-gradient(top, #ace, #00C1DE); /*火狐*/

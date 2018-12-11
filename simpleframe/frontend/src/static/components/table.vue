@@ -1,6 +1,6 @@
 <template>
     <div style="width: 100%;height: 100%;">
-        <div @click="getMenus">fdsfsfsfdsfsdfs</div>
+        <div>table</div>
         <p>{{msg}}</p>
     </div>
 </template>
@@ -9,24 +9,24 @@
     import API from '@/static/axios/index'
 
     export default {
-        name: "test",
+        name: "table",
         data() {
             return {
                 msg: []
             }
         },
         methods: {
-            getMenus() {
-                let that = this;
-                API.get('/api/sysmanager/menus').then(res => {
-                    that.msg = res.data
-                }, error => {
-                })
-            }
+            // getMenus() {
+            //     let that = this;
+            //     API.get('/api/sysmanger/menus').then(res => {
+            //         that.msg = res.data
+            //     }, error => {
+            //     })
+            // }
         },
         created: function () {
             console.log("aaaaaaaaaaaaa")
-            this.getMenus()
+            // this.getMenus()
         }
     }
 </script>

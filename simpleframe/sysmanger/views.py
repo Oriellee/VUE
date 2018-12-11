@@ -41,7 +41,6 @@ class Profile(View):
         result = {}
         user_obj = models.User.objects.get(Q(username=unit.get_cache(request)))
         result = {
-            "id": user_obj.id,
             "username": user_obj.username
         }
         return unit.json_response(result)
@@ -49,5 +48,18 @@ class Profile(View):
 
 class Menu(View):
     def get(self, request):
-        menu_obj = models.Menus.objects.all().values()
-        return unit.json_response(list(menu_obj))
+        menu_obj = list(models.Menus.objects.all().order_by('order').values())
+        menu_dic = {}
+        backdata = []
+        for item in menu_obj:
+            if item['permissionname'] in menu_dic.keys():
+                menu_dic[item['permissionname']]['child'].append(item)
+            else:
+                menu_dic[item['permissionname']] = {}
+                menu_dic[item['permissionname']]['name'] = item['permissionname']
+                menu_dic[item['permissionname']]['icon'] = item['permissionicon']
+                menu_dic[item['permissionname']]['index'] = str(item['order'])
+                menu_dic[item['permissionname']]['child'] = [item]
+        for j in menu_dic:
+            backdata.append(menu_dic[j])
+        return unit.json_response(backdata)

@@ -4,9 +4,11 @@ import store from '@/static/store/index';
 
 Vue.use(VueRouter);
 
+import Frame from '@/static/components/frame'
 import Index from '@/static/components/index'
-import Hello from '@/static/components/HelloWorld'
-import Test from '@/static/components/test'
+import User from '@/static/components/user'
+import Table from '@/static/components/table'
+import Echart from '@/static/components/echart'
 import Error from '@/static/components/404'
 
 // 懒加载方式，当路由被访问的时候才加载对应组件
@@ -25,13 +27,19 @@ const router = new VueRouter({
         },
         {
             path: '/',
-            component: Index,
+            component: Frame,
             children: [{
-                path: 'hello',
-                component: Hello,
+                path: 'index',
+                component: Index,
             }, {
-                path: 'test',
-                component: Test,
+                path: 'user',
+                component: User,
+            }, {
+                path: 'echart',
+                component: Echart,
+            }, {
+                path: 'table',
+                component: Table,
             }
             ]
         }
