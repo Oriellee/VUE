@@ -33,10 +33,12 @@ class AuthMiddleware(MiddlewareMixin):
                 if int(token_dic["frequency"]) > unit.day_frequency:
                     unit.del_cache(sctoken)
                     return unit.json_response_error("调用次数太多", 405)
-                d_value = time.time() - float(token_dic["time"])
+                d_value = time.time() - token_dic["time"]
                 if d_value > unit.save_time:
                     unit.del_cache(sctoken)
                     return unit.json_response_error("登录超过规定时长，请重新登录", 406)
+                # 下面这句用来判断是从登陆计时还是从停止操作开始计时，添加下面一句为从停止操作开始计时。
+                token_dic["time"] = time.time()
                 unit.input_cache(sctoken, token_dic)
             else:
                 return unit.json_response_error("sctoken不存在", 401)

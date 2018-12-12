@@ -7,7 +7,10 @@ import router from './static/router/index.js';
 import '@/static/assets/iconfont.css';
 import '@/static/assets/styles/main.scss';
 import 'font-awesome/css/font-awesome.min.css';
+import echarts from 'echarts'
 
+
+Vue.prototype.$echarts = echarts;
 Vue.use(ElementUI, {size: 'small', zIndex: 3000});
 
 const vm = new Vue({

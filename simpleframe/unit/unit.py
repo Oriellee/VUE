@@ -50,7 +50,7 @@ def set_cache(username, sctoken):
     cache_value = {
         'sctoken': sctoken,
         'username': username,
-        'time': str(time.time()),
+        'time': time.time(),
         'frequency': 1
     }
     input_cache(sctoken, cache_value)
