@@ -11,54 +11,36 @@
                 </el-col>
             </el-col>
             <el-col :span="24" class="echart-box">
-                <span>当前时间</span>
+                <span>任务完成度</span>
                 <div>
                     <barLine id="barLine" :chartData="barLineData"></barLine>
                 </div>
             </el-col>
             <el-col :span="24" class="echart-box">
-                <span>当前时间</span>
+                <span>客流统计</span>
                 <div>
-                    <threeBar id="threeBar" :chartData="barLineData"></threeBar>
+                    <threeBar id="threeBar" :chartData="threeBarData"></threeBar>
                 </div>
             </el-col>
-            <el-col :span="24" class="echart-box">
-                <span>当前时间</span>
-                <div>
-                    <el-input v-model="input" placeholder="请输入内容" class="text"
-                              style="margin-bottom:15px;max-width:200px;float:right"></el-input>
-                    <!-- :default-sort="{prop: 'id', order: 'descending'}" 默认排序-->
-                    <el-table ref="multipleTable"
-                              :data="filterData.slice((currentPage-1)*pagesize,currentPage*pagesize)" border stripe
-                              style="width: 100%;margin-bottom:25px;" v-bind:height="height"
-                              @selection-change="handleSelectionChange">
-                        <el-table-column type="selection" width="55">
-                        </el-table-column>
-                        <el-table-column prop="name" label="Item name" sortable width="180">
-                        </el-table-column>
-                        <el-table-column prop="date" label="date" sortable width="180">
-                        </el-table-column>
-                        <el-table-column prop="address" label="address" sortable>
-                        </el-table-column>
-                        <el-table-column prop="url" label="网址" sortable width="180">
-                        </el-table-column>
-                        <el-table-column prop="alex" label="Alex" sortable>
-                        </el-table-column>
-                        <el-table-column prop="country" label="国家" sortable>
-                        </el-table-column>
-                    </el-table>
-                    <el-pagination style="float:right"
-                                   background
-                                   @size-change="handleSizeChange"
-                                   @current-change="handleCurrentChange"
-                                   :current-page="currentPage"
-                                   :page-sizes="[10, 20, 50, 100]"
-                                   :page-size="pagesize"
-                                   layout="total, sizes, prev, pager, next"
-                                   :total="filterData.length">
-                    </el-pagination>
-                </div>
-
+            <el-col :span="24" class="bottom-box">
+                <el-col class="echart-box">
+                    <span>年龄占比</span>
+                    <div>
+                        <threePie id="threePie" :chartData="barLineData"></threePie>
+                    </div>
+                </el-col>
+                <el-col class="echart-box">
+                    <span>职业分析</span>
+                    <div>
+                        <radar id="radar" :chartData="radarData"></radar>
+                    </div>
+                </el-col>
+                <el-col class="echart-box">
+                    <span>每日停留时长</span>
+                    <div>
+                        <heatmap id="heatmap" :chartData="heatmapData"></heatmap>
+                    </div>
+                </el-col>
             </el-col>
         </el-row>
     </div>
@@ -67,183 +49,116 @@
 <script>
     import barLine from "./echart/barLine";
     import threeBar from "./echart/threeBar";
+    import radar from "./echart/radar";
+    import threePie from "./echart/threePie";
+    import heatmap from "./echart/heatmap";
 
     export default {
         name: "index",
         data: function () {
             return {
                 textBoxList: [{'num': 22, 'type': '今日新增', 'icon': 'el-icon-time'}, {
-                    'num': 22,
-                    'type': '今日新增',
+                    'num': 30,
+                    'type': '昨日新增', 'icon': 'el-icon-mobile-phone\n'
+                }, {'num': 31, 'type': '明日预测', 'icon': 'el-icon-star-on'}, {
+                    'num': 4565,
+                    'type': '历史总量',
                     'icon': 'el-icon-bell'
-                }, {
-                    'num': 22,
-                    'type': '今日新增', 'icon': 'el-icon-mobile-phone\n'
-                }, {'num': 22, 'type': '今日新增', 'icon': 'el-icon-star-on'}],
+                }],
                 barLineData: {
-                    xAxis: ["1街", "2街", "3街", "4街", "5街", "6街"],
+                    xAxis: ["12-05", "12-06", "12-07", "12-08", "12-09", "12-10"],
                     yAxis: [[4, 6, 36, 6, 8,], [4, 2, 36, 6, 8,], [100, 33, 100, 100, 100, 100]]
                 },
-                tableData: [{
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '111111 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-08',
-                    name: '王小虎',
-                    address: '234234 1518 弄'
-                }, {
-                    date: '2016-05-06',
-                    name: '王小虎',
-                    address: '上海市普陀4444区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-07',
-                    name: '王小虎',
-                    address: '22222 1518 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '111111 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-08',
-                    name: '王小虎',
-                    address: '234234 1518 弄'
-                }, {
-                    date: '2016-05-06',
-                    name: '王小虎',
-                    address: '上海市普陀4444区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-07',
-                    name: '王小虎',
-                    address: '22222 1518 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '111111 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-08',
-                    name: '王小虎',
-                    address: '234234 1518 弄'
-                }, {
-                    date: '2016-05-06',
-                    name: '王小虎',
-                    address: '上海市普陀4444区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-07',
-                    name: '王小虎',
-                    address: '22222 1518 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '111111 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-08',
-                    name: '王小虎',
-                    address: '234234 1518 弄'
-                }, {
-                    date: '2016-05-06',
-                    name: '王小虎',
-                    address: '上海市普陀4444区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-07',
-                    name: '王小虎',
-                    address: '22222 1518 弄'
-                }],
-                filtData: [],
-                input: "",
-                height: 500,
-                currentPage: 1,
-                pagesize: 20,
-                multipleSelection: []
+                threeBarData: {
+                    'name': ['昨天', '今天', '明天'],
+                    'data': {
+                        "客流统计": [65, 60, 76.5],
+                        "人数增长": [93, 93, 93.4],
+                        "实际购买人数": [87, 87, 88.3],
+                        "预计购买人数": [36, 36, 36.4],
+                    }
+                },
+                radarData: {
+                    'indicator': [{
+                        "name": "人事",
+                        "max": 88
+                    }, {
+                        "name": "程序员",
+                        "max": 88
+                    }, {
+                        "name": "销售",
+                        "max": 88
+                    }, {
+                        "name": "蓝领",
+                        "max": 88
+                    }, {
+                        "name": "商务",
+                        "max": 88
+                    }],
+                    'data1': [[80, 50, 55, 80, 50]],
+                    'data2': [
+                        [60, 60, 65, 60, 70]
+                    ]
+                },
+                heatmapData: {
+                    'hours': ['0-2', '3-5', '6-8',
+                        '9-11', '12-14', '15-17',
+                        '18-20', '21-23'
+                    ],
+                    'days': ['12-09', '12-10', '12-11',
+                        '12-12', '12-13'
+                    ],
+                    'data': [
+                        [0, 0, 0],
+                        [1, 0, 1],
+                        [2, 0, 2],
+                        [3, 0, 1],
+                        [4, 0, 3],
+                        [0, 1, 0],
+                        [1, 1, 0],
+                        [2, 1, 1],
+                        [3, 1, 0],
+                        [4, 1, 1],
+                        [0, 2, 1],
+                        [1, 2, 1],
+                        [2, 2, 2],
+                        [3, 2, 1],
+                        [4, 2, 2],
+                        [0, 3, 0],
+                        [1, 3, 2],
+                        [2, 3, 3],
+                        [3, 3, 2],
+                        [4, 3, 4],
+                        [0, 4, 3],
+                        [1, 4, 4],
+                        [2, 4, 6],
+                        [3, 4, 4],
+                        [4, 4, 6],
+                        [0, 5, 0],
+                        [1, 5, 4],
+                        [2, 5, 6],
+                        [3, 5, 4],
+                        [4, 5, 6],
+                        [0, 6, 3],
+                        [1, 6, 5],
+                        [2, 6, 8],
+                        [3, 6, 6],
+                        [4, 6, 8],
+                        [0, 7, 1],
+                        [1, 7, 3],
+                        [2, 7, 4],
+                        [3, 7, 3],
+                        [4, 7, 5]
+                    ]
+                }
+
             }
         },
         components: {
-            barLine, threeBar
+            barLine, threeBar, radar, heatmap, threePie
         },
-        computed: {
-            filterData: function () {
-                var input = this.input && this.input.toLowerCase()
-                var items = this.tableData
-                var items1
-                if (input) {
-                    items1 = items.filter(function (item) {
-                        //console.log(Object.keys(item))
-                        //return item.country.toLowerCase().match(searchContent);
-                        //Object.keys(item)遍历item对象里面的键值是否符合回调函数的测试，通过测试则返回true，否则为false。
-                        return Object.keys(item).some(function (key1) {
-                            return String(item[key1]).toLowerCase().match(input)
-                        })
-                    })
 
-                } else {
-                    items1 = this.tableData
-                }
-                return items1
-
-            }
-        },
-        methods: {
-
-
-            handleSizeChange: function (size) {
-                this.pagesize = size;
-            },
-            handleCurrentChange: function (currentPage) {
-                this.currentPage = currentPage;
-            },
-            handleSelectionChange(val) {
-                this.multipleSelection = val;
-
-            }
-        },
+        methods: {},
         mounted() {
         }
     }
@@ -253,6 +168,7 @@
     @font-color: #818492;
     .father-box {
         margin: auto;
+        padding: 20px;
         .el-row {
             > .el-col {
                 margin-bottom: 20px;
@@ -344,27 +260,16 @@
                     margin: auto;
                     padding: 5px;
                 }
-                &:last-child > div {
-                    height: inherit;
-                    /*<!--.el-input {-->*/
-                        /*<!--&gt; input {-->*/
-                            /*<!--background-color: #4A5064;-->*/
-                            /*<!--color: @font-color;-->*/
-                            /*<!--border:1px solid @font-color;-->*/
-                        /*<!--}-->*/
-
-                    /*<!--}-->*/
-                    /*<!--.el-table, .el-table tr, .el-table th, .el-table td {-->*/
-                        /*<!--background-color: #4A5064;-->*/
-                        /*<!--color: @font-color;-->*/
-
-                    /*<!--}-->*/
-                    /*<!--.el-table tr{-->*/
-                        /*<!--border: 1px solid @font-color;-->*/
-                        /*<!--&:hover {-->*/
-                            /*<!--background-color: red;-->*/
-                        /*<!--}-->*/
-                    /*<!--}-->*/
+            }
+            .bottom-box {
+                padding: 0;
+                display: flex;
+                justify-content: space-between;
+                > .echart-box {
+                    width: calc(~"37.5%" - 10px);
+                }
+                > .echart-box:nth-child(2) {
+                    width: calc(~"25%" - 10px);
                 }
             }
         }

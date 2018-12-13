@@ -20,8 +20,13 @@
                 //使用闭包保证一个vue实例拥有自己的一份props
                 default() {
                     return {
-                        xAxis: [],
-                        yAxis: [[], [], []]
+                        'name': [],
+                        'data': {
+                            "学前教育毛入园率(%)": [],
+                            "义务教育巩固率(㎡)": [],
+                            "高中教育毛入学率(%)": [],
+                            "高等教育毛入学率(%)": [],
+                        }
 
                     };
                 }
@@ -36,26 +41,19 @@
         },
         methods: {
             drawChart() {
-                let chartData = this.chartData;
-                var Name = ['国家目标', '海南目标', '完成情况'];
+                var chartData = this.chartData;
+                var Name = chartData.name;
+                var data = chartData.data;
                 var color = ['#fb734e', '#e32f46', '#94d96c', '#0bbcb7', '#1a9bfc', '#7049f0'];
-                var data = {
-                    //['国家目标', '海南目标', '完成情况']
-                    "学前教育毛入园率(%)": [65, 60, 76.5],
-                    "义务教育巩固率(㎡)": [93, 93, 93.4],
-                    "高中教育毛入学率(%)": [87, 87, 88.3],
-                    "高等教育毛入学率(%)": [36, 36, 36.4],
-                };
-
                 var xAxisData = [];
                 var data1 = [],
                     data2 = [],
                     data3 = [];
                 for (var i in data) {
                     xAxisData.push(i);
-                    data1.push(data[i][0])
-                    data2.push(data[i][1])
-                    data3.push(data[i][2])
+                    data1.push(data[i][0]);
+                    data2.push(data[i][1]);
+                    data3.push(data[i][2]);
                 }
 
                 var label = {

@@ -7,8 +7,8 @@ Vue.use(VueRouter);
 import Frame from '@/static/components/frame'
 import Index from '@/static/components/index'
 import User from '@/static/components/user'
-import Table from '@/static/components/table'
-import Echart from '@/static/components/echart'
+import TablePage from '@/static/components/tablePage'
+import EchartPage from '@/static/components/echartPage'
 import Error from '@/static/components/404'
 
 // 懒加载方式，当路由被访问的时候才加载对应组件
@@ -36,10 +36,10 @@ const router = new VueRouter({
                 component: User,
             }, {
                 path: 'echart',
-                component: Echart,
+                component: EchartPage,
             }, {
                 path: 'table',
-                component: Table,
+                component: TablePage,
             }
             ]
         }
