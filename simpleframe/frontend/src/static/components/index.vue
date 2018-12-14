@@ -38,7 +38,7 @@
                 <el-col class="echart-box">
                     <span>每日停留时长</span>
                     <div>
-                        <heatmap id="heatmap" :chartData="heatmapData"></heatmap>
+                        <echartHeatMap id="heatmap" :chartData="heatmapData"></echartHeatMap>
                     </div>
                 </el-col>
             </el-col>
@@ -51,7 +51,7 @@
     import threeBar from "./echart/threeBar";
     import radar from "./echart/radar";
     import threePie from "./echart/threePie";
-    import heatmap from "./echart/heatmap";
+    import echartHeatMap from "./echart/echartHeatMap";
 
     export default {
         name: "index",
@@ -155,7 +155,7 @@
             }
         },
         components: {
-            barLine, threeBar, radar, heatmap, threePie
+            barLine, threeBar, radar, echartHeatMap, threePie
         },
 
         methods: {},

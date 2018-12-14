@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: "heatmap",
+        name: "echartHeatMap",
         data() {
             return {
                 chart: "",

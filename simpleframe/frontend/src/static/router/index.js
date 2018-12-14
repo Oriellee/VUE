@@ -7,7 +7,7 @@ Vue.use(VueRouter);
 import Frame from '@/static/components/frame'
 import Index from '@/static/components/index'
 import User from '@/static/components/user'
-import TablePage from '@/static/components/tablePage'
+import TableShow from '@/static/components/tableShow'
 import EchartPage from '@/static/components/echartPage'
 import Error from '@/static/components/404'
 
@@ -39,7 +39,7 @@ const router = new VueRouter({
                 component: EchartPage,
             }, {
                 path: 'table',
-                component: TablePage,
+                component: TableShow,
             }
             ]
         }

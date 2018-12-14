@@ -8,9 +8,14 @@ import '@/static/assets/iconfont.css';
 import '@/static/assets/styles/main.scss';
 import 'font-awesome/css/font-awesome.min.css';
 import echarts from 'echarts'
+import china from 'echarts/map/json/china.json'
+import moment from "moment";
 
+Vue.prototype.$moment = moment;
 
 Vue.prototype.$echarts = echarts;
+echarts.registerMap('china', china);
+
 Vue.use(ElementUI, {size: 'small', zIndex: 3000});
 
 const vm = new Vue({
