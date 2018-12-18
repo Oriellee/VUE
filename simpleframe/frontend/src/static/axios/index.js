@@ -17,7 +17,6 @@ let removePending = (config) => {
 };
 axios.defaults.headers['sctoken'] = store.state.sctoken;
 axios.defaults.timeout = 5000;
-
 // 请求拦截器。
 axios.interceptors.request.use(config => {
     removePending(config); //在一个ajax发送前执行一下取消操作
