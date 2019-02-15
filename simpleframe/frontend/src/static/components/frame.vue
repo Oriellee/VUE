@@ -2,7 +2,7 @@
     <el-container class="father-box frame-box">
         <el-header class="header">
             <el-row type="flex" justify="space-between" align="middle">
-                <el-col :span="10">拾柴大数据分析系统</el-col>
+                <el-col :span="10">Oriel大数据分析系统</el-col>
                 <el-col :span="10">
                     <el-dropdown trigger="hover">
                         <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544792808055&di=077a2662293f3d92399b9398d23b721c&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201502%2F03%2F20150203135625_AxMxi.jpeg"
